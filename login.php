@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $usuario = $result->fetch_assoc();
             
             if (password_verify($senha, $usuario['senha'])) {
-                // Login bem-sucedido
                 $_SESSION['usuario_id'] = $usuario['id'];
                 $_SESSION['nome'] = $usuario['nome'];
                 $_SESSION['email'] = $usuario['email'];

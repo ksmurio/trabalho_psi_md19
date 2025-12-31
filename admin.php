@@ -10,7 +10,6 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['tipo'] != 'admin') {
 
 $mensagem = '';
 
-// Adicionar novo livro
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adicionar_livro'])) {
     $titulo = trim($_POST['titulo']);
     $autor = trim($_POST['autor']);
@@ -29,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adicionar_livro'])) {
     }
 }
 
-// Editar livro
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['editar_livro'])) {
     $id = intval($_POST['id']);
     $titulo = trim($_POST['titulo']);
@@ -47,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['editar_livro'])) {
     }
 }
 
-// Eliminar livro
 if (isset($_GET['eliminar'])) {
     $id = intval($_GET['eliminar']);
     $stmt = $conn->prepare("DELETE FROM livros WHERE id = ?");
@@ -58,10 +56,8 @@ if (isset($_GET['eliminar'])) {
     }
 }
 
-// Buscar todos os livros
 $result_livros = $conn->query("SELECT * FROM livros ORDER BY titulo ASC");
 
-// Buscar empréstimos ativos
 $result_emprestimos = $conn->query("SELECT e.*, l.titulo, u.nome, u.email 
                                      FROM emprestimos e 
                                      INNER JOIN livros l ON e.livro_id = l.id 
@@ -77,7 +73,7 @@ include 'includes/header.php';
     
     <?php echo $mensagem; ?>
     
-    <!-- Tabs -->
+
     <ul class="nav nav-tabs mb-4" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#livros" type="button">
@@ -97,7 +93,6 @@ include 'includes/header.php';
     </ul>
     
     <div class="tab-content">
-        <!-- Tab: Gestão de Livros -->
         <div class="tab-pane fade show active" id="livros">
             <div class="card">
                 <div class="card-header">
@@ -147,7 +142,7 @@ include 'includes/header.php';
                                         </td>
                                     </tr>
                                     
-                                    <!-- Modal Editar -->
+                                
                                     <div class="modal fade" id="editModal<?php echo $livro['id']; ?>" tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -206,7 +201,7 @@ include 'includes/header.php';
             </div>
         </div>
         
-        <!-- Tab: Empréstimos Ativos -->
+
         <div class="tab-pane fade" id="emprestimos">
             <div class="card">
                 <div class="card-header">
@@ -259,7 +254,6 @@ include 'includes/header.php';
             </div>
         </div>
         
-        <!-- Tab: Adicionar Livro -->
         <div class="tab-pane fade" id="adicionar">
             <div class="card">
                 <div class="card-header bg-primary text-white">

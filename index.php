@@ -78,8 +78,7 @@ include 'includes/header.php';
             </div>
         </div>
     </div>
-    
-    <!-- Livros em Destaque -->
+
     <h2 class="mb-4"><i class="bi bi-star-fill text-warning"></i> Livros em Destaque</h2>
     <div class="row">
         <?php if (count($livros_destaque) > 0): ?>
